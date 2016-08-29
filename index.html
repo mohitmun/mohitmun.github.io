@@ -1,0 +1,74 @@
+---
+layout: default
+---
+<script type="text/javascript" src="https://rawgit.com/nomatteus/conway-game-of-life-js/master/gameoflife.js"></script>
+
+
+<div class="home">
+
+  <!-- <h1 class="page-heading">Posts</h1>
+  
+  <ul class="post-list">
+    {% for post in site.posts %}
+      <li>
+        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+
+        <h2>
+          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title | escape }}</a>
+        </h2>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+ -->
+  <div id="example2" class="example">
+    <canvas id="life-example2" class="life-game" style="width: 600px; margin-left: auto; margin-right: auto;display: block; cursor: pointer;">
+      
+    </canvas>
+      <a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" style="text-align: -webkit-center;display: block;">Conway's Game of Life</a>
+  </div>
+
+ <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+  <script type="text/javascript">
+    function add_listeners(game, example_num) {
+  $("#" + example_num + " .toggle, #" + example_num + " canvas").click(function(){
+    game_toggle(game);
+  });
+  $("#" + example_num + " .step").click(function(){
+    game_toggle(game, "stop");
+    game.step();
+  });
+}
+function game_toggle(game, force) {
+  var interval = game.getInterval();
+  if (force == "stop" || interval !== null) {
+    // Stop
+    clearInterval(interval);
+    game.setTheInterval(null);
+  } else {
+    // start
+    interval = setInterval(game.step, 100);
+    game.setTheInterval(interval);
+  }
+}
+
+    var example3_cells = [];
+for (var i=0; i < 19; i++) {
+  example3_cells[i] = [];
+  for (var j=0; j < 44; j++) {
+    example3_cells[i][j] = Math.floor(Math.random()*2);
+  }
+}
+
+var game2 = new GameOfLife({
+  canvas_id:    "life-example2",
+  cell_width:   10,
+  cell_height:  10,
+  init_cells:   example3_cells
+});
+add_listeners(game2, "example2");
+  </script>
+
+</div>
